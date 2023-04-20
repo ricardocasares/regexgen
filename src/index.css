@@ -1,0 +1,68 @@
+/* box reset */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #fff;
+}
+
+body {
+  font-family: system-ui;
+  margin-top: 24px;
+  margin-bottom: 100px;
+}
+
+.output {
+  font-family: monospace;
+  font-size: 18px;
+  user-select: none;
+}
+
+/* Components */
+/* ========== */
+
+/* <Match /> */
+.match {
+  border-bottom: 16px solid #ccc;
+  display: inline-block;
+  cursor: pointer;
+  padding-bottom: 2px;
+}
+
+/* <Line /> */
+.line {
+  display: inline-block;
+  white-space: pre-wrap;
+  width: 100%;
+  padding: 0 24px;
+}
+.line:hover,
+.line.selected:hover {
+  background: #222;
+}
+.line.selected {
+  background: #333;
+}
+
+/* <Regex /> */
+.regex {
+  cursor: pointer;
+  width: auto 90%;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  background: #222;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 18px;
+}
