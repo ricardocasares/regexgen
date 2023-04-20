@@ -62,7 +62,7 @@ export function useRegexGen() {
         // apply all the patterns to the line
         regexes.reduce((acc, [a, b]) => acc.replace(escape(a), b), escape(text))
       )
-      .join(`(\\n(?:\\s.*\\n)*\\s*)`);
+      .join(`.*?`);
   }
 
   return {

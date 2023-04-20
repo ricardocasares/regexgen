@@ -31,14 +31,14 @@ export const parser = reactStringReplace({
     ),
   },
   interface: {
-    pattern: /(Ethernet\s\d|Serial\s\d)/g,
+    pattern: /(Ethernet\d|Serial\d|TokenRing\d)/g,
     ignore: ["float", "digit", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
         key={key}
         title="Interface"
         data-text={raw}
-        data-pattern="(Ethernet\s\d|Serial\s\d)"
+        data-pattern="(Ethernet\d|Serial\d|TokenRing\d)"
       >
         {processed}
       </Match>

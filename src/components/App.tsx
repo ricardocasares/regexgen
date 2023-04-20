@@ -2,13 +2,13 @@ import { MouseEventHandler, useEffect, useState } from "react";
 import { Preview } from "./Preview";
 import { Workbench } from "./Workbench";
 import { RegularExpression } from "./RegularExpression";
-import { help } from "../lib/help";
+import { help, example } from "../lib/help";
 import { Layout } from "./Layout";
 import { useRegexGen } from "../lib/hooks";
 
 export default function App() {
   const core = useRegexGen();
-  const [lines, setLines] = useState<string[]>(help);
+  const [lines, setLines] = useState<string[]>(example);
   const regex = core.generate();
 
   const handleSelections: (
