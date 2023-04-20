@@ -1,10 +1,6 @@
 import reactStringReplace from "react-string-replace-recursively";
 import { Match } from "../components/Match";
 
-export const escape = (str: string) => {
-  return str.replace(/[.*+?^${}()/|[\]\\]/g, "\\$&");
-};
-
 export const parser = reactStringReplace({
   ratio: {
     pattern: /(\d{1,3}\/\d{1,3})/g,
@@ -18,7 +14,7 @@ export const parser = reactStringReplace({
       >
         {processed}
       </Match>
-    )
+    ),
   },
   macAddress: {
     pattern: /([0-9a-f]{4}[\\.][0-9a-f]{4}[\\.][0-9a-f]{4})/g,
@@ -32,7 +28,7 @@ export const parser = reactStringReplace({
       >
         {processed}
       </Match>
-    )
+    ),
   },
   interface: {
     pattern: /(Ethernet\s\d|Serial\s\d)/g,
@@ -46,7 +42,7 @@ export const parser = reactStringReplace({
       >
         {processed}
       </Match>
-    )
+    ),
   },
   ipAddress: {
     pattern: /(\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b)/,
@@ -60,7 +56,7 @@ export const parser = reactStringReplace({
       >
         {processed}
       </Match>
-    )
+    ),
   },
   time: {
     pattern: /(\d{1,2}:\d{2}:\d{2})/g,
@@ -74,7 +70,7 @@ export const parser = reactStringReplace({
       >
         {processed}
       </Match>
-    )
+    ),
   },
   float: {
     pattern: /(\d{1,4}\.\d{1,4})/g,
@@ -88,7 +84,7 @@ export const parser = reactStringReplace({
       >
         {processed}
       </Match>
-    )
+    ),
   },
   digit: {
     pattern: /(\d)/g,
@@ -97,7 +93,7 @@ export const parser = reactStringReplace({
       <Match title="Integer" key={key} data-text={raw} data-pattern="(\d)">
         {processed}
       </Match>
-    )
+    ),
   },
   hashtag: {
     pattern: /(#[a-z\d][\w-]*)/gi,
@@ -111,7 +107,7 @@ export const parser = reactStringReplace({
       >
         {processed}
       </Match>
-    )
+    ),
   },
   emoji: {
     pattern: /(\p{Extended_Pictographic})/gu,
@@ -125,7 +121,7 @@ export const parser = reactStringReplace({
       >
         {processed}
       </Match>
-    )
+    ),
   },
   word: {
     pattern: /(\b[^\s]+\b)/g,
@@ -133,6 +129,6 @@ export const parser = reactStringReplace({
       <Match title="Word" key={key} data-text={raw} data-pattern="(\b[^\s]+\b)">
         {processed}
       </Match>
-    )
-  }
+    ),
+  },
 });

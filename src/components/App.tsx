@@ -2,6 +2,7 @@ import { MouseEvent, MouseEventHandler, useEffect, useState } from "react";
 import { Line } from "./Line";
 import { RegularExpression } from "./RegularExpression";
 import { help } from "../lib/help";
+import { escape } from "../lib/util";
 
 export type TLine = {
   line: string;
@@ -22,9 +23,9 @@ export default function App() {
   const regex = Object.entries(lines)
     .map(([_, { line, patterns }]) =>
       // apply all the patterns to the line
-      patterns.reduce((acc, [a, b]) => acc.replace(a, b), line)
+      patterns.reduce((acc, [a, b]) => acc.replace(escape(a), b), escape(line))
     )
-    .join(`(\n(?:\s.*\n)*\s*)`)
+    .join(`(\\n(?:\\s.*\\n)*\\s*)`)
     .trim();
 
   const toggleSelectedLine = (idx: number, line: string) => {
