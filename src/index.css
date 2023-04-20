@@ -22,7 +22,7 @@ body {
 .output {
   font-family: monospace;
   user-select: none;
-  width: 50%;
+  flex: 1;
 }
 
 /* Components */
@@ -31,6 +31,7 @@ body {
 /* <Layout /> */
 .layout {
   display: flex;
+  padding: 0 24px;
 }
 
 /* <Match /> */
@@ -46,7 +47,6 @@ body {
   display: inline-block;
   white-space: pre-wrap;
   width: 100%;
-  padding: 0 24px;
 }
 .line:hover,
 .line.selected:hover {
@@ -73,7 +73,7 @@ body {
 
 /* <Preview /> */
 .preview {
-  width: 50%;
+  flex: 1;
   font-family: monospace;
   white-space: pre-wrap;
   overflow: scroll;
