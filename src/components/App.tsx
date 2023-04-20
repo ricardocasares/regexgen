@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import { Line } from "./Line";
 import { RegularExpression } from "./RegularExpression";
 import { help } from "../lib/help";
@@ -28,6 +28,11 @@ export default function App() {
     .join(`(\\n(?:\\s.*\\n)*\\s*)`)
     .trim();
 
+  /**
+   * Toggles a line to be selected
+   * @param idx line number
+   * @param line line text
+   */
   const toggleSelectedLine = (idx: number, line: string) => {
     if (!lines.hasOwnProperty(idx)) {
       setLines({ ...lines, [idx]: { line, patterns: [] } });
@@ -37,18 +42,15 @@ export default function App() {
     }
   };
 
-  const toggleSelectedPattern = (
-    idx: number,
-    event: MouseEvent<HTMLDivElement>
-  ) => {
-    // event is not coming from the color block
-    // @ts-ignore
-    if (!event.target?.dataset?.matcher) return;
-    // otherwise, get the patterns for this line
+  /**
+   * Toggles a pattern inside a line
+   * @param idx line number
+   * @param matcher text to match along with an array of patterns
+   */
+  const toggleSelectedPattern = (idx: number, matcher: TMatcherData) => {
     const { patterns } = lines[idx];
-    // extract the color block dataset
-    // @ts-ignore
-    const { text, pattern }: TMatcherData = event.target.dataset;
+    // extract the text and pattern
+    const { text, pattern } = matcher;
     // check if the pattern is already selected
     const exists = patterns.find(([x]) => x === text);
     // either add or remove the pattern
@@ -68,7 +70,13 @@ export default function App() {
       // Single click
       case 1:
         // Toggle add/remove predetermined patterns
-        return toggleSelectedPattern(idx, event);
+        // extract the color block dataset
+        // @ts-ignore
+        // event is not coming from the color block
+        if (!event.target?.dataset?.matcher) return;
+        // @ts-ignore
+        const { text, pattern }: TMatcherData = event?.target?.dataset;
+        return toggleSelectedPattern(idx, { text, pattern });
       // Double click
       case 2:
         return toggleSelectedLine(idx, line);
