@@ -1,15 +1,17 @@
 import { MouseEventHandler, useEffect, useState } from "react";
-import { Line } from "./Line";
+import { Preview } from "./Preview";
+import { Workbench } from "./Workbench";
 import { RegularExpression } from "./RegularExpression";
 import { help } from "../lib/help";
 import { escape } from "../lib/util";
+import { Layout } from "./Layout";
 
-export type TLine = {
-  line: string;
+export type TLineMatcher = {
+  text: string;
   patterns: [string, string][];
 };
 
-export type TLines = Record<string, TLine>;
+export type TLineMatchers = Record<string, TLineMatcher>;
 
 export type TMatcherData = {
   text: string;
@@ -17,38 +19,43 @@ export type TMatcherData = {
 };
 
 export default function App() {
-  const [lines, setLines] = useState<TLines>({});
-  const [input, setInput] = useState<string[]>(help);
+  const [lines, setLines] = useState<string[]>(help);
+  const [lineMatchers, setLineMatchers] = useState<TLineMatchers>({});
 
-  const regex = Object.entries(lines)
-    .map(([_, { line, patterns }]) =>
+  const regex = Object.entries(lineMatchers)
+    .map(([_, { text, patterns }]) =>
       // apply all the patterns to the line
-      patterns.reduce((acc, [a, b]) => acc.replace(escape(a), b), escape(line))
+      patterns.reduce((acc, [a, b]) => acc.replace(escape(a), b), escape(text))
     )
-    .join(`(\\n(?:\\s.*\\n)*\\s*)`)
-    .trim();
+    .join(`(\\n(?:\\s.*\\n)*\\s*)`);
 
   /**
    * Toggles a line to be selected
-   * @param idx line number
+   * @param num line number
    * @param line line text
    */
-  const toggleSelectedLine = (idx: number, line: string) => {
-    if (!lines.hasOwnProperty(idx)) {
-      setLines({ ...lines, [idx]: { line, patterns: [] } });
-    } else {
-      const { [idx]: _, ...rest } = lines;
-      setLines({ ...rest });
+  const toggleSelectedLine = (num: number, text: string) => {
+    switch (lineMatchers.hasOwnProperty(num)) {
+      case true:
+        // matcher already exists for this line so we remove it
+        const { [num]: _, ...rest } = lineMatchers;
+        return setLineMatchers({ ...rest });
+      case false:
+        // in this case we add a new matcher to this line number
+        return setLineMatchers({
+          ...lineMatchers,
+          [num]: { text, patterns: [] },
+        });
     }
   };
 
   /**
    * Toggles a pattern inside a line
-   * @param idx line number
+   * @param num line number
    * @param matcher text to match along with an array of patterns
    */
-  const toggleSelectedPattern = (idx: number, matcher: TMatcherData) => {
-    const { patterns } = lines[idx];
+  const toggleSelectedPattern = (num: number, matcher: TMatcherData) => {
+    const { patterns } = lineMatchers[num];
     // extract the text and pattern
     const { text, pattern } = matcher;
     // check if the pattern is already selected
@@ -59,7 +66,10 @@ export default function App() {
       : [...patterns, [text, pattern]];
 
     // update the state
-    setLines({ ...lines, [idx]: { ...lines[idx], patterns: updated } });
+    setLineMatchers({
+      ...lineMatchers,
+      [num]: { ...lineMatchers[num], patterns: updated },
+    });
   };
 
   const handleSelections: (
@@ -71,10 +81,10 @@ export default function App() {
       case 1:
         // Toggle add/remove predetermined patterns
         // extract the color block dataset
-        // @ts-ignore
+        // @ts-expect-error
         // event is not coming from the color block
         if (!event.target?.dataset?.matcher) return;
-        // @ts-ignore
+        // @ts-expect-error
         const { text, pattern }: TMatcherData = event?.target?.dataset;
         return toggleSelectedPattern(idx, { text, pattern });
       // Double click
@@ -87,8 +97,8 @@ export default function App() {
 
   useEffect(() => {
     const handlePaste = (event: ClipboardEvent) => {
-      setLines({});
-      setInput(event.clipboardData?.getData("text").split("\n") ?? []);
+      setLineMatchers({});
+      setLines(event.clipboardData?.getData("text").split("\n") ?? []);
     };
 
     document.addEventListener("paste", handlePaste);
@@ -96,18 +106,14 @@ export default function App() {
   }, []);
 
   return (
-    <>
-      <div className="output">
-        {input.map((text, idx) => (
-          <Line
-            key={idx}
-            text={text}
-            selected={lines.hasOwnProperty(idx)}
-            onClick={handleSelections(idx, text)}
-          />
-        ))}
-      </div>
+    <Layout>
+      <Workbench
+        lines={lines}
+        onClick={handleSelections}
+        isSelected={(id) => lineMatchers.hasOwnProperty(id)}
+      />
+      <Preview text={lines.join("\n")} regex={regex} />
       <RegularExpression regex={regex} />
-    </>
+    </Layout>
   );
 }

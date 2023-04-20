@@ -21,16 +21,21 @@ body {
 
 .output {
   font-family: monospace;
-  font-size: 18px;
   user-select: none;
+  width: 50%;
 }
 
 /* Components */
 /* ========== */
 
+/* <Layout /> */
+.layout {
+  display: flex;
+}
+
 /* <Match /> */
 .match {
-  border-bottom: 16px solid #ccc;
+  border-bottom: 10px solid #ccc;
   display: inline-block;
   cursor: pointer;
   padding-bottom: 2px;
@@ -64,5 +69,18 @@ body {
   background: #222;
   border-radius: 6px;
   font-family: monospace;
-  font-size: 18px;
+}
+
+/* <Preview /> */
+.preview {
+  width: 50%;
+  font-family: monospace;
+  white-space: pre-wrap;
+  overflow: scroll;
+}
+
+.preview .matched {
+  background: lime;
+  color: #000;
+  font-weight: bold;
 }
