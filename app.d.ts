@@ -9,7 +9,7 @@ declare module "react-string-replace-recursively" {
 
   export type TTextFn = (s: string) => string;
 
-  type Config<T> = {
+  export type Config<T> = {
     [K in keyof T]: {
       ignore?: (keyof T)[];
       textFn?: TTextFn;

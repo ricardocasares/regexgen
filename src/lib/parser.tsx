@@ -123,6 +123,19 @@ export const parser = reactStringReplace({
       </Match>
     ),
   },
+  level: {
+    pattern: /(INFO|TRACE|WARNING|WARN|DEBUG|FATAL|ERROR)/g,
+    matcherFn: (raw, processed, key) => (
+      <Match
+        title="Log levels"
+        key={key}
+        data-text={raw}
+        data-pattern="(INFO|TRACE|WARNING|WARN|DEBUG|FATAL|ERROR)"
+      >
+        {processed}
+      </Match>
+    ),
+  },
   word: {
     pattern: /(\b[^\s]+\b)/g,
     matcherFn: (raw, processed, key) => (
