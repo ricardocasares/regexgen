@@ -90,4 +90,37 @@ Fddi0
                 Protocol    Pkts In   Chars In   Pkts Out  Chars Out
                   Novell          0          0        183      11163
                       ARP          1         49          0          0
+
+!ratio
+
+1/255
+255/255
+20/20/3312
+
+!macAddress1
+
+aaaa.bbbb.cccc
+AAAA.BBBB.CCCC
+1a2b.3c4d.5e6f
+
+!macAddress2
+
+aa:bb:cc:dd:ee:ff
+AA:BB:CC:DD:EE:FF
+a1:b2:c3:d4:e5:f6
+
+!interface
+
+GigabitEthernet1
+GigabitEthernet1/1
+GigabitEthernet1/1/1
+GigabitEthernet1/1/1.100
+Ethernet1
+TwoGigabitEthernet1
+FiveGigabitEthernet1
+TenGigabitEthernet1
+TwentyFiveGigE1
+FortyGigabitEthernet1
+Loopback0
+Port-channel1
 `.split("\n");

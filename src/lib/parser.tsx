@@ -3,40 +3,26 @@ import { Match } from "../components/Match";
 
 export const parser = reactStringReplace({
   ratio: {
-    pattern: /(\d+\/)+\d+/g,
+    pattern: /((?:\d+\/)+\d+)/g,
     ignore: ["ratio"],
     matcherFn: (raw, processed, key) => (
       <Match
         title="Ratio"
         key={key}
         data-text={raw}
-        data-pattern="(\d+\/)+\d+"
+        data-pattern="((\d+\/)+\d+)"
       >
         {processed}
       </Match>
     ),
   },
   macAddress1: {
-    pattern: /([a-fA-F\d]{4}\.){2}[a-fA-F\d]{4}/g,
+    pattern: /((?:[a-fA-F\d]{4}\.){2}[a-fA-F\d]{4})/g,
     ignore: ["float", "digit", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
         key={key}
-        title="MAC address"
-        data-text={raw}
-        data-pattern="([a-fA-F\d]{4}\.){2}[a-fA-F\d]{4}"
-      >
-        {processed}
-      </Match>
-    ),
-  },
-  macAddress2: {
-    pattern: /(([a-fA-F\d]{2}:){5}[a-fA-F\d]{2})/g,
-    ignore: ["float", "integer", "word"],
-    matcherFn: (raw, processed, key) => (
-      <Match
-        key={key}
-        title="MAC address (2)"
+        title="MAC address (1)"
         data-text={raw}
         data-pattern="(([a-fA-F\d]{4}\.){2}[a-fA-F\d]{4})"
       >
@@ -44,15 +30,29 @@ export const parser = reactStringReplace({
       </Match>
     ),
   },
+  macAddress2: {
+    pattern: /((?:[a-fA-F\d]{2}:){5}[a-fA-F\d]{2})/g,
+    ignore: ["float", "digit", "word"],
+    matcherFn: (raw, processed, key) => (
+      <Match
+        key={key}
+        title="MAC address (2)"
+        data-text={raw}
+        data-pattern="(([a-fA-F\d]{2}:){5}[a-fA-F\d]{2})"
+      >
+        {processed}
+      </Match>
+    ),
+  },
   interface: {
-    pattern: /(Ethernet|Serial|TokenRing\s?\d)/,
+    pattern: /(?:\S*Ethernet|\S*GigE|Loopback|Tunnel|Serial|Port-channel)\d(?:\/\d)*(?:\.\d+)*/g,
     ignore: ["float", "digit", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
         key={key}
         title="Interface"
         data-text={raw}
-        data-pattern="(Ethernet\d|Serial\d|TokenRing\d)"
+        data-pattern="(\S*Ethernet|\S*GigE|Loopback|Tunnel|Serial|Port-channel)\d(\/\d)*(\.\d+)*"
       >
         {processed}
       </Match>
