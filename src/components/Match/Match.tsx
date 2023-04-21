@@ -1,16 +1,17 @@
 import uniqolor from "uniqolor";
-import type { ReactElement, HTMLAttributes } from "react";
+import css from "./match.module.css";
+import type { ReactNode, HTMLAttributes } from "react";
 
 export type TMatch = {
   title: string;
-  children: ReactElement;
+  children: ReactNode;
 } & HTMLAttributes<HTMLSpanElement>;
 export const Match = (props: TMatch) => {
   const { color: borderColor } = uniqolor(props.title);
 
   return (
     <span
-      className="match"
+      className={css.match}
       data-matcher={true}
       style={{ borderColor }}
       {...props}

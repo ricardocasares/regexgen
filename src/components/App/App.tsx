@@ -1,17 +1,19 @@
 import { MouseEventHandler, useEffect, useState } from "react";
-import { Preview } from "./Preview";
-import { Workbench } from "./Workbench";
-import { RegularExpression } from "./RegularExpression";
-import { help, example } from "../lib/help";
-import { Layout } from "./Layout";
-import { useRegexGen } from "../lib/hooks";
-import { Debug } from "./Debug";
+import { Preview } from "../Preview";
+import { Workbench } from "../Workbench/Workbench";
+import { ReExp } from "../ReExp";
+import { help, example } from "../../lib/help";
+import { Stack } from "../Stack";
+import { useRegexGen } from "../../lib/hooks";
+import { Debug } from "../Debug/Debug";
+import { Toggle } from "../Toggle";
+import css from "./app.module.css";
 
 export default function App() {
   const core = useRegexGen();
+  const [debuggerOn, setDebugger] = useState(false);
   const [lines, setLines] = useState<string[]>(example);
   const regex = core.generate();
-  const debug = new URL(window.location.href).searchParams.has("debug");
 
   const handleSelections: (
     idx: number,
@@ -47,15 +49,24 @@ export default function App() {
   }, []);
 
   return (
-    <Layout>
-      <Workbench
-        lines={lines}
-        onClick={handleSelections}
-        isSelected={(id) => core.hasLine(id)}
-      />
-      <Preview text={lines.join("\n")} regex={regex} />
-      <Debug onChange={(x) => core.reset(x)} object={core.lines} />
-      <RegularExpression regex={regex} />
-    </Layout>
+    <Stack ps sm>
+      <Stack h sm className={css.sticky}>
+        <ReExp regex={regex} />
+        <Stack>
+          <Toggle on={debuggerOn} onClick={() => setDebugger(!debuggerOn)} />
+        </Stack>
+      </Stack>
+      <Stack h sm s>
+        <Workbench
+          lines={lines}
+          onClick={handleSelections}
+          isSelected={(id) => core.hasLine(id)}
+        />
+        <Preview text={lines.join("\n")} regex={regex} />
+        {debuggerOn && (
+          <Debug onChange={(x) => core.reset(x)} object={core.lines} />
+        )}
+      </Stack>
+    </Stack>
   );
 }

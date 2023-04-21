@@ -1,0 +1,6 @@
+.regex {
+  cursor: pointer;
+  color: hsl(250, 95.0%, 76.8%);
+  background: hsl(252, 40.1%, 22.5%);
+  font-family: monospace;
+}

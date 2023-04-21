@@ -1,0 +1,20 @@
+/* <Debug /> */
+.debug {
+  background: #111;
+}
+
+.debug textarea {
+  border: none;
+  color: #fff;
+  background: inherit !important;
+  height: 100%;
+}
+
+.debug textarea:focus {
+  outline: none;
+}
+
+.debug.error {
+  background: hsl(357, 60.2%, 31.8%);
+  border-radius: 6px;
+}

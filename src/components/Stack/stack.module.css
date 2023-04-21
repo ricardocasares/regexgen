@@ -1,0 +1,50 @@
+/* <Stack /> */
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.stack.f {
+  flex: 1;
+}
+
+.stack.h {
+  flex-direction: row;
+}
+
+.stack.s {
+  align-items: stretch;
+}
+
+.stack.sm {
+  gap: 10px;
+}
+
+.stack.md {
+  gap: 16rem;
+}
+
+.stack.lg {
+  gap: 24rem;
+}
+
+.stack.ps {
+  padding: 10px;
+}
+
+.stack.pm {
+  padding: 16px;
+}
+
+.stack.pl {
+  padding: 24px;
+}
+
+.stack.rs {
+  border-radius: 4px;
+}
+
+.stack.vh {
+  height: 100vh;
+}

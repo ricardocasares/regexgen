@@ -1,0 +1,14 @@
+.line {
+  display: inline-block;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.line:hover,
+.line.selected:hover {
+  background: #222;
+}
+
+.line.selected {
+  background: #333;
+}

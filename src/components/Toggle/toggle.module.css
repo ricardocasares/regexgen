@@ -1,0 +1,15 @@
+.toggle {
+  border: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: #222;
+  color: #666;
+  padding: 0 16px;
+}
+
+.toggle.on,
+.toggle:hover {
+  color: hsl(131, 43%, 57.2%);
+  background: hsl(136, 38.7%, 16%);
+}

@@ -1,6 +1,7 @@
 import cls from "clsx";
 import { HTMLAttributes } from "react";
-import { parser } from "../lib/parser";
+import css from "./line.module.css";
+import { parser } from "../../lib/parser";
 
 export type TLine = {
   text: string;
@@ -8,7 +9,7 @@ export type TLine = {
 } & HTMLAttributes<HTMLDivElement>;
 
 export const Line = ({ text, selected, ...props }: TLine) => (
-  <div className={cls("line", { selected })} {...props}>
+  <div className={cls(css.line, { [css.selected]: selected })} {...props}>
     {selected ? parser(text) : text}
   </div>
 );

@@ -1,5 +1,7 @@
 import { MouseEventHandler } from "react";
-import { Line } from "./Line";
+import css from "./workbench.module.css";
+import { Stack } from "../Stack";
+import { Line } from "../Line";
 
 export type Workbench = {
   lines: string[];
@@ -9,7 +11,7 @@ export type Workbench = {
 
 export function Workbench({ lines, isSelected, onClick }: Workbench) {
   return (
-    <div className="output">
+    <Stack f rs ps className={css.workbench}>
       {lines.map((text, idx) => (
         <Line
           key={idx}
@@ -18,6 +20,6 @@ export function Workbench({ lines, isSelected, onClick }: Workbench) {
           onClick={onClick(idx, text)}
         />
       ))}
-    </div>
+    </Stack>
   );
 }

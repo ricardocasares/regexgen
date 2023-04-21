@@ -1,0 +1,14 @@
+.preview {
+  font-family: monospace;
+  white-space: pre-wrap;
+  background: #111;
+}
+
+.preview .matched {
+  background: hsla(275, 99.9%, 75.3%, 0.6);
+  font-weight: bold;
+}
+
+.preview.error {
+  background: hsl(357, 60.2%, 31.8%);
+}

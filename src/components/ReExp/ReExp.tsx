@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { wait } from "../lib/util";
+import { Stack } from "../Stack";
+import css from "./reexp.module.css";
+import { wait } from "../../lib/util";
 
-export type TRegularExpression = {
+export type TReExp = {
   regex: string;
 };
-export const RegularExpression = ({ regex }: TRegularExpression) => {
+export const ReExp = ({ regex }: TReExp) => {
   const [copied, setCopied] = useState(false);
   const help = "Your regex will appear here, then click to copy";
   const ready = Boolean(regex.length);
@@ -17,8 +19,10 @@ export const RegularExpression = ({ regex }: TRegularExpression) => {
       .then(() => setCopied(false));
 
   return (
-    <div className="regex" onClick={onClick}>
-      {displayText}
-    </div>
+    <Stack f rs ps className={css.regex}>
+      <div onClick={onClick}>
+        {displayText}
+      </div>
+    </Stack>
   );
 };

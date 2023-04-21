@@ -1,0 +1,6 @@
+.match {
+  border-bottom: 10px solid #ccc;
+  display: inline-block;
+  cursor: pointer;
+  padding-bottom: 2px;
+}
