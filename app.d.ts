@@ -1,11 +1,14 @@
+declare module "*.css" {
+  export default any;
+}
 declare module "react-string-replace-recursively" {
-  import { ReactElement } from "react";
+  import { ReactNode } from "react";
 
   export type TMatcherFn = (
     rawText: string,
-    processed: ReactElement,
+    processed: ReactNode,
     key: string
-  ) => ReactElement;
+  ) => ReactNode;
 
   export type TTextFn = (s: string) => string;
 
@@ -18,7 +21,7 @@ declare module "react-string-replace-recursively" {
     };
   };
 
-  export function parser<T>(c: Config<T>): (input: string) => ReactElement;
+  export function parser<T>(c: Config<T>): (input: string) => ReactNode;
 
   export default parser;
 }
