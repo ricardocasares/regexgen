@@ -45,14 +45,14 @@ export default function App() {
   }, []);
 
   return (
-    <Stack ps sm>
+    <Stack vh ps sm>
       <Stack h sm className={css.sticky}>
         <ReExp regex={core.regex} />
         <Stack>
           <Toggle on={debuggerOn} onClick={() => setDebugger(!debuggerOn)} />
         </Stack>
       </Stack>
-      <Stack h sm s>
+      <Stack f h sm s>
         <Workbench
           lines={core.lines()}
           onClick={handleSelections}
