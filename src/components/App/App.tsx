@@ -4,7 +4,7 @@ import { Workbench } from "../Workbench/Workbench";
 import { ReExp } from "../ReExp";
 import { help, example } from "../../lib/help";
 import { Stack } from "../Stack";
-import { useRegexGen } from "../../lib/hooks";
+import { useRegexGen } from "../../lib/core";
 import { Debug } from "../Debug/Debug";
 import { Toggle } from "../Toggle";
 import css from "./app.module.css";
