@@ -3,6 +3,7 @@
   white-space: pre-wrap;
   width: 100%;
   border-radius: 4px;
+  min-height: 15px;
 }
 
 .line:hover,
