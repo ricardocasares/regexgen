@@ -10,9 +10,8 @@ import { Toggle } from "../Toggle";
 import css from "./app.module.css";
 
 export default function App() {
-  const core = useRegexGen();
+  const core = useRegexGen(example);
   const [debuggerOn, setDebugger] = useState(false);
-  const [lines, setLines] = useState<string[]>(example);
   const regex = core.generate();
 
   const handleSelections: (
@@ -41,7 +40,7 @@ export default function App() {
   useEffect(() => {
     const handlePaste = (event: ClipboardEvent) => {
       core.reset();
-      setLines(event.clipboardData?.getData("text").split("\n") ?? []);
+      core.setInput(event.clipboardData?.getData("text") ?? "");
     };
 
     document.addEventListener("paste", handlePaste);
@@ -58,13 +57,13 @@ export default function App() {
       </Stack>
       <Stack h sm s>
         <Workbench
-          lines={lines}
+          lines={core.lines()}
           onClick={handleSelections}
           isSelected={(id) => core.hasLine(id)}
         />
-        <Preview text={lines.join("\n")} regex={regex} />
+        <Preview text={core.input} regex={regex} />
         {debuggerOn && (
-          <Debug onChange={(x) => core.reset(x)} object={core.lines} />
+          <Debug onChange={(x) => core.reset(x)} object={core.regexes} />
         )}
       </Stack>
     </Stack>

@@ -34,7 +34,8 @@ By clicking a block you create a regex for that content type.
 When more than one line is selected a regex is created to match the content between those lines.
 
 Ok, time to paste some text here and try it out!
-Use ${modKey()}+V or ${modKey()}+V on Mac to start.`.split("\n");
+Use ${modKey()}+V or ${modKey()}+V on Mac to start.
+`;
 
 export const example = `Router# show interfaces
 Ethernet 0 is up, line protocol is up
@@ -123,4 +124,4 @@ TwentyFiveGigE1
 FortyGigabitEthernet1
 Loopback0
 Port-channel1
-`.split("\n");
+`;

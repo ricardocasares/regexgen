@@ -5,27 +5,32 @@ export type Regex = [string, string];
 
 export type LineRegexes = {
   text: string;
-  regexes: Regex[];
+  patterns: Regex[];
 };
 
-export function useRegexGen() {
-  const [lines, setLines] = useState<Record<string, LineRegexes>>({});
+export function useRegexGen(text: string) {
+  const [input, setInput] = useState(text);
+  const [regexes, setRegexes] = useState<Record<string, LineRegexes>>({});
 
   function reset(init = {}) {
-    setLines(init);
+    setRegexes(init);
+  }
+
+  function lines() {
+    return input.split(/\n/);
   }
 
   function hasLine(n: number) {
-    return !!lines[n];
+    return !!regexes[n];
   }
 
   function selectLine(n: number, text: string) {
-    setLines({ ...lines, [n]: { text, regexes: [] } });
+    setRegexes({ ...regexes, [n]: { text, patterns: [] } });
   }
 
   function deselectLine(n: number) {
-    const { [n]: _, ...rest } = lines;
-    setLines({ ...rest });
+    const { [n]: _, ...rest } = regexes;
+    setRegexes({ ...rest });
   }
 
   function toggleLine(n: number, text: string) {
@@ -33,23 +38,23 @@ export function useRegexGen() {
   }
 
   function lineHasRegex(n: number, [text]: Regex) {
-    const { regexes = [] } = lines[n];
-    return !!regexes.find(([txt]) => txt === text);
+    const { patterns = [] } = regexes[n];
+    return !!patterns.find(([txt]) => txt === text);
   }
 
   function addRegex(n: number, regex: Regex) {
     if (hasLine(n) && !lineHasRegex(n, regex)) {
-      const { text, regexes = [] } = lines[n];
-      setLines({ ...lines, [n]: { text, regexes: [...regexes, regex] } });
+      const { text, patterns = [] } = regexes[n];
+      setRegexes({ ...regexes, [n]: { text, patterns: [...patterns, regex] } });
     }
   }
 
   function removeRegex(n: number, regex: Regex) {
     if (lineHasRegex(n, regex)) {
-      const { regexes: old, ...rest } = lines[n];
+      const { patterns: old, ...rest } = regexes[n];
       const [text] = regex;
-      const regexes = old.filter(([txt]) => txt !== text);
-      setLines({ ...lines, [n]: { ...rest, regexes } });
+      const patterns = old.filter(([txt]) => txt !== text);
+      setRegexes({ ...regexes, [n]: { ...rest, patterns } });
     }
   }
 
@@ -58,8 +63,8 @@ export function useRegexGen() {
   }
 
   function generate() {
-    return Object.entries(lines)
-      .map(([_, { text, regexes }]) =>
+    return Object.entries(regexes)
+      .map(([_, { text, patterns: regexes }]) =>
         // apply all the patterns to the line
         regexes.reduce((acc, [a, b]) => acc.replace(escape(a), b), escape(text))
       )
@@ -67,7 +72,9 @@ export function useRegexGen() {
   }
 
   return {
+    input,
     lines,
+    regexes,
     reset,
     hasLine,
     selectLine,
@@ -78,6 +85,7 @@ export function useRegexGen() {
     removeRegex,
     toggleRegex,
     generate,
+    setInput,
   };
 }
 
