@@ -27,13 +27,10 @@ export default function App() {
         if (!event.target?.dataset?.matcher) return;
         // @ts-expect-error
         const { text, pattern } = event?.target?.dataset;
-        core.toggleRegex(idx, [text, pattern]);
-        
-        return core.generate();
+        return core.toggleRegex(idx, [text, pattern]);
       // Double click
       case 2:
-        core.toggleLine(idx, line);
-        return core.generate();
+        return core.toggleLine(idx, line);
     }
   };
 

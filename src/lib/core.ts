@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { escape } from "./util";
 
 export type Regex = [string, string];
@@ -12,6 +12,10 @@ export function useRegexGen(text: string) {
   const [regex, setRegex] = useState("");
   const [input, setInput] = useState(text);
   const [regexes, setRegexes] = useState<Record<string, LineRegexes>>({});
+
+  useEffect(() => {
+    generate();
+  }, [regexes]);
 
   function reset(init = {}) {
     setRegexes(init);
@@ -64,12 +68,17 @@ export function useRegexGen(text: string) {
   }
 
   function generate() {
-    setRegex(Object.entries(regexes)
-      .map(([_, { text, patterns: regexes }]) =>
-        // apply all the patterns to the line
-        regexes.reduce((acc, [a, b]) => acc.replace(escape(a), b), escape(text))
-      )
-      .join(`[\\s\\S]*?`));
+    setRegex(
+      Object.entries(regexes)
+        .map(([_, { text, patterns: regexes }]) =>
+          // apply all the patterns to the line
+          regexes.reduce(
+            (acc, [a, b]) => acc.replace(escape(a), b),
+            escape(text)
+          )
+        )
+        .join(`[\\s\\S]*?`)
+    );
   }
 
   return {
@@ -90,4 +99,3 @@ export function useRegexGen(text: string) {
     setInput,
   };
 }
-
