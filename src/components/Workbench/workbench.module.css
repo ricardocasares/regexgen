@@ -3,4 +3,5 @@
   user-select: none;
   flex: 1;
   background: #111;
+  overflow-x: scroll;
 }
