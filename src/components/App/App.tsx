@@ -12,7 +12,6 @@ import css from "./app.module.css";
 export default function App() {
   const core = useRegexGen(example);
   const [debuggerOn, setDebugger] = useState(false);
-  const regex = core.generate();
 
   const handleSelections: (
     idx: number,
@@ -28,12 +27,13 @@ export default function App() {
         if (!event.target?.dataset?.matcher) return;
         // @ts-expect-error
         const { text, pattern } = event?.target?.dataset;
-        return core.toggleRegex(idx, [text, pattern]);
+        core.toggleRegex(idx, [text, pattern]);
+        
+        return core.generate();
       // Double click
       case 2:
-        return core.toggleLine(idx, line);
-      default:
-        return;
+        core.toggleLine(idx, line);
+        return core.generate();
     }
   };
 
@@ -50,7 +50,7 @@ export default function App() {
   return (
     <Stack ps sm>
       <Stack h sm className={css.sticky}>
-        <ReExp regex={regex} />
+        <ReExp regex={core.regex} />
         <Stack>
           <Toggle on={debuggerOn} onClick={() => setDebugger(!debuggerOn)} />
         </Stack>
@@ -61,7 +61,7 @@ export default function App() {
           onClick={handleSelections}
           isSelected={(id) => core.hasLine(id)}
         />
-        <Preview text={core.input} regex={regex} />
+        <Preview text={core.input} regex={core.regex} />
         {debuggerOn && (
           <Debug onChange={(x) => core.reset(x)} object={core.regexes} />
         )}

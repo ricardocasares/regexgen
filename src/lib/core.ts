@@ -9,6 +9,7 @@ export type LineRegexes = {
 };
 
 export function useRegexGen(text: string) {
+  const [regex, setRegex] = useState("");
   const [input, setInput] = useState(text);
   const [regexes, setRegexes] = useState<Record<string, LineRegexes>>({});
 
@@ -63,17 +64,18 @@ export function useRegexGen(text: string) {
   }
 
   function generate() {
-    return Object.entries(regexes)
+    setRegex(Object.entries(regexes)
       .map(([_, { text, patterns: regexes }]) =>
         // apply all the patterns to the line
         regexes.reduce((acc, [a, b]) => acc.replace(escape(a), b), escape(text))
       )
-      .join(`[\\s\\S]*?`);
+      .join(`[\\s\\S]*?`));
   }
 
   return {
     input,
     lines,
+    regex,
     regexes,
     reset,
     hasLine,
