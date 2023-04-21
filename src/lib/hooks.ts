@@ -46,9 +46,10 @@ export function useRegexGen() {
 
   function removeRegex(n: number, regex: Regex) {
     if (lineHasRegex(n, regex)) {
-      const { text, regexes: old } = lines[n];
-      const regexes = old.filter(([txt]) => txt === text);
-      setLines({ ...lines, [n]: { text, regexes } });
+      const { regexes: old, ...rest } = lines[n];
+      const [text] = regex;
+      const regexes = old.filter(([txt]) => txt !== text);
+      setLines({ ...lines, [n]: { ...rest, regexes } });
     }
   }
 
@@ -62,7 +63,7 @@ export function useRegexGen() {
         // apply all the patterns to the line
         regexes.reduce((acc, [a, b]) => acc.replace(escape(a), b), escape(text))
       )
-      .join(`.*?`);
+      .join(`[\\s\\S]*?`);
   }
 
   return {
