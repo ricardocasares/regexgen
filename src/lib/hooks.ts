@@ -11,8 +11,8 @@ export type LineRegexes = {
 export function useRegexGen() {
   const [lines, setLines] = useState<Record<string, LineRegexes>>({});
 
-  function reset() {
-    setLines({});
+  function reset(init = {}) {
+    setLines(init);
   }
 
   function hasLine(n: number) {

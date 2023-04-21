@@ -83,3 +83,12 @@ body {
   background: hsla(275, 99.9%, 75.3%, 0.6);
   font-weight: bold;
 }
+
+
+/* <Debug /> */
+.debugger {
+  flex: 1;
+  border: none;
+  color: white;
+  background: black !important;
+}

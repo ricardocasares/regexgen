@@ -1,7 +1,8 @@
 export type Debug = {
   object: any;
+  onChange: (x: object) => void
 };
 
-export const Debug = ({ object }: Debug) => (
-  <div className="preview">{JSON.stringify(object, null, 2)}</div>
+export const Debug = ({ object, onChange }: Debug) => (
+  <textarea onChange={({ target: { value }}) => onChange(JSON.parse(value))} className="debugger" value={JSON.stringify(object, null, 2)}></textarea>
 );

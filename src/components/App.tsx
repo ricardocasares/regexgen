@@ -54,7 +54,7 @@ export default function App() {
         isSelected={(id) => core.hasLine(id)}
       />
       <Preview text={lines.join("\n")} regex={regex} />
-      {debug && <Debug object={core.lines} />}
+      <Debug onChange={(x) => core.reset(x)} object={core.lines} />
       <RegularExpression regex={regex} />
     </Layout>
   );
