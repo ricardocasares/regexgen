@@ -6,7 +6,7 @@
 
 ## Bugs
 
-- [ ] Cannot paste in the debugger
+- [x] Cannot paste in the debugger
 - [ ] When the same thing appears more than once
 - [x] Escaping regex and unescaping
 - [ ] This is too greedy and kills the browser `(\n(?:\s.*\n)*\s*)` (Preview is unstable)
