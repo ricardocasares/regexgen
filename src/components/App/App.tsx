@@ -11,6 +11,7 @@ import css from "./app.module.css";
 
 export default function App() {
   const core = useRegexGen(example);
+  const hasRegex = Boolean(core.regex.length);
   const [debuggerOn, setDebugger] = useState(false);
 
   const handleSelections: (
@@ -58,10 +59,8 @@ export default function App() {
           onClick={handleSelections}
           isSelected={(id) => core.hasLine(id)}
         />
-        <Preview text={core.input} regex={core.regex} />
-        {debuggerOn && (
-          <Debug onChange={(x) => core.reset(x)} object={core.regexes} />
-        )}
+        {hasRegex && <Preview text={core.input} regex={core.regex} />}
+        {debuggerOn && <Debug onChange={core.reset} object={core.regexes} />}
       </Stack>
     </Stack>
   );
