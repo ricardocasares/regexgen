@@ -80,7 +80,6 @@ body {
 }
 
 .preview .matched {
-  background: lime;
-  color: #000;
+  background: hsla(275, 99.9%, 75.3%, 0.6);
   font-weight: bold;
 }

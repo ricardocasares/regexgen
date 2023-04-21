@@ -3,7 +3,7 @@ import { Match } from "../components/Match";
 
 export const parser = reactStringReplace({
   ratio: {
-    pattern: /(\d{1,3}\/\d{1,3})/g,
+    pattern: /(\d{1,3}\/\d{1,3})/,
     ignore: ["ratio"],
     matcherFn: (raw, processed, key) => (
       <Match
@@ -17,7 +17,7 @@ export const parser = reactStringReplace({
     ),
   },
   macAddress: {
-    pattern: /([0-9a-f]{4}[\\.][0-9a-f]{4}[\\.][0-9a-f]{4})/g,
+    pattern: /([0-9a-f]{4}[\\.][0-9a-f]{4}[\\.][0-9a-f]{4})/,
     ignore: ["float", "digit", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
@@ -31,7 +31,7 @@ export const parser = reactStringReplace({
     ),
   },
   interface: {
-    pattern: /(Ethernet\d|Serial\d|TokenRing\d)/g,
+    pattern: /(Ethernet|Serial|TokenRing\s?\d)/,
     ignore: ["float", "digit", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
@@ -59,7 +59,7 @@ export const parser = reactStringReplace({
     ),
   },
   time: {
-    pattern: /(\d{1,2}:\d{2}:\d{2})/g,
+    pattern: /(\d{1,2}:\d{2}:\d{2})/,
     ignore: ["digit", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
@@ -73,7 +73,7 @@ export const parser = reactStringReplace({
     ),
   },
   float: {
-    pattern: /(\d{1,4}\.\d{1,4})/g,
+    pattern: /(\d{1,4}\.\d{1,4})/,
     ignore: ["digit"],
     matcherFn: (raw, processed, key) => (
       <Match
@@ -87,7 +87,7 @@ export const parser = reactStringReplace({
     ),
   },
   digit: {
-    pattern: /(\d)/g,
+    pattern: /(\d)/,
     ignore: ["word"],
     matcherFn: (raw, processed, key) => (
       <Match title="Integer" key={key} data-text={raw} data-pattern="(\d)">
@@ -96,7 +96,7 @@ export const parser = reactStringReplace({
     ),
   },
   hashtag: {
-    pattern: /(#[a-z\d][\w-]*)/gi,
+    pattern: /(#[a-z\d][\w-]*)/i,
     ignore: ["word"],
     matcherFn: (raw, processed, key) => (
       <Match
@@ -110,7 +110,7 @@ export const parser = reactStringReplace({
     ),
   },
   emoji: {
-    pattern: /(\p{Extended_Pictographic})/gu,
+    pattern: /(\p{Extended_Pictographic})/u,
     ignore: ["word"],
     matcherFn: (raw, processed, key) => (
       <Match
@@ -124,7 +124,7 @@ export const parser = reactStringReplace({
     ),
   },
   level: {
-    pattern: /(INFO|TRACE|WARNING|WARN|DEBUG|FATAL|ERROR)/g,
+    pattern: /(INFO|TRACE|WARNING|WARN|DEBUG|FATAL|ERROR)/,
     matcherFn: (raw, processed, key) => (
       <Match
         title="Log levels"
@@ -137,7 +137,7 @@ export const parser = reactStringReplace({
     ),
   },
   word: {
-    pattern: /(\b[^\s]+\b)/g,
+    pattern: /(\b[^\s]+\b)/,
     matcherFn: (raw, processed, key) => (
       <Match title="Word" key={key} data-text={raw} data-pattern="(\b[^\s]+\b)">
         {processed}
