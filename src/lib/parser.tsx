@@ -2,9 +2,22 @@ import reactStringReplace from "react-string-replace-recursively";
 import { Match } from "../components/Match";
 
 export const parser = reactStringReplace({
+  interface: {
+    pattern: /((?:\S*Ethernet|\S*GigE|Loopback|Tunnel|Serial|Port-channel)\d+(?:\/\d+)*(?:\.\d+)*)/g,
+    ignore: ["float", "word", "ratio"],
+    matcherFn: (raw, processed, key) => (
+      <Match
+        key={key}
+        title="Interface"
+        data-text={raw}
+        data-pattern="((?:\S*Ethernet|\S*GigE|Loopback|Tunnel|Serial|Port-channel)\d+(?:\/\d+)*(?:\.\d+)*)"
+      >
+        {processed}
+      </Match>
+    ),
+  },
   ratio: {
     pattern: /((?:\d+\/)+\d+)/g,
-    ignore: ["ratio"],
     matcherFn: (raw, processed, key) => (
       <Match
         title="Ratio"
@@ -18,7 +31,7 @@ export const parser = reactStringReplace({
   },
   macAddress1: {
     pattern: /((?:[a-fA-F\d]{4}\.){2}[a-fA-F\d]{4})/g,
-    ignore: ["float", "digit", "word"],
+    ignore: ["float", "integer", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
         key={key}
@@ -32,7 +45,7 @@ export const parser = reactStringReplace({
   },
   macAddress2: {
     pattern: /((?:[a-fA-F\d]{2}:){5}[a-fA-F\d]{2})/g,
-    ignore: ["float", "digit", "word"],
+    ignore: ["float", "integer", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
         key={key}
@@ -44,23 +57,9 @@ export const parser = reactStringReplace({
       </Match>
     ),
   },
-  interface: {
-    pattern: /(?:\S*Ethernet|\S*GigE|Loopback|Tunnel|Serial|Port-channel)\d(?:\/\d)*(?:\.\d+)*/g,
-    ignore: ["float", "digit", "word"],
-    matcherFn: (raw, processed, key) => (
-      <Match
-        key={key}
-        title="Interface"
-        data-text={raw}
-        data-pattern="(\S*Ethernet|\S*GigE|Loopback|Tunnel|Serial|Port-channel)\d(\/\d)*(\.\d+)*"
-      >
-        {processed}
-      </Match>
-    ),
-  },
   ipAddress: {
     pattern: /(\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b)/,
-    ignore: ["float", "digit", "word"],
+    ignore: ["float", "integer", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
         title="IP Address"
@@ -73,8 +72,8 @@ export const parser = reactStringReplace({
     ),
   },
   time: {
-    pattern: /(\d{1,2}:\d{2}:\d{2})/,
-    ignore: ["digit", "word"],
+    pattern: /(\d{1,2}:\d{2}:\d{2})/g,
+    ignore: ["integer", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
         title="Time"
@@ -87,8 +86,8 @@ export const parser = reactStringReplace({
     ),
   },
   float: {
-    pattern: /(\d{1,4}\.\d{1,4})/,
-    ignore: ["digit"],
+    pattern: /(\d{1,4}\.\d{1,4})/g,
+    ignore: ["integer"],
     matcherFn: (raw, processed, key) => (
       <Match
         title="Float"
@@ -100,8 +99,8 @@ export const parser = reactStringReplace({
       </Match>
     ),
   },
-  digit: {
-    pattern: /(\d)/,
+  integer: {
+    pattern: /(\d)/g,
     ignore: ["word"],
     matcherFn: (raw, processed, key) => (
       <Match title="Integer" key={key} data-text={raw} data-pattern="(\d)">
