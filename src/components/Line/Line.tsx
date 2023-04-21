@@ -9,7 +9,12 @@ export type TLine = {
 } & HTMLAttributes<HTMLDivElement>;
 
 export const Line = ({ text, selected, ...props }: TLine) => (
-  <div className={cls(css.line, { [css.selected]: selected })} {...props}>
+  <div
+    className={cls(css.line, {
+      [css.selected]: selected,
+    })}
+    {...props}
+  >
     {selected ? parser(text) : text}
   </div>
 );
