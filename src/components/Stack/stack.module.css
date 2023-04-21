@@ -13,8 +13,12 @@
   flex-direction: row;
 }
 
-.stack.s {
+.stack.stretch {
   align-items: stretch;
+}
+
+.stack.start {
+  align-items: start;
 }
 
 .stack.sm {

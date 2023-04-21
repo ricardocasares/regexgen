@@ -16,6 +16,8 @@ export type Stack = {
     pl?: boolean;
     rs?: boolean;
     vh?: boolean;
+    start?: boolean;
+    stretch?: boolean;
     className?: string;
     children?: ReactNode;
 } & HTMLAttributes<HTMLDivElement>
@@ -25,7 +27,6 @@ export function Stack({ children, className = "", ...props }: Stack) {
         [css.f]: props.f,
         [css.v]: props.v,
         [css.h]: props.h,
-        [css.s]: props.s,
         [css.sm]: props.sm,
         [css.md]: props.md,
         [css.lg]: props.lg,
@@ -34,5 +35,7 @@ export function Stack({ children, className = "", ...props }: Stack) {
         [css.pl]: props.pl,
         [css.rs]: props.rs,
         [css.vh]: props.vh,
+        [css.start]: props.start,
+        [css.stretch]: props.stretch,
     })}>{children}</div>
 }
