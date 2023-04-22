@@ -11,7 +11,7 @@ export function Preview() {
   } = useCore();
 
   try {
-    const match = useMemo(() => input.match(new RegExp(regex)), [regex]);
+    const match = input.match(new RegExp(regex));
     const result = useMemo(
       () =>
         match?.reduce(
