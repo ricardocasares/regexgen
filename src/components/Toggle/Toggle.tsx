@@ -9,7 +9,7 @@ export type Toggle = {
 export function Toggle({ on, ...props }: Toggle) {
   return (
     <button {...props} className={clx(css.toggle, { [css.on]: on })}>
-      Debugger
+      Editor
     </button>
   );
 }
