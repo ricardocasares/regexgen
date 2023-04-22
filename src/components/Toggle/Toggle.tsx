@@ -1,7 +1,6 @@
 import clx from "clsx";
-import { HTMLAttributes, ReactNode } from "react";
+import { HTMLAttributes } from "react";
 import css from "./toggle.module.css";
-import { Bug } from "../Icons/Bug";
 
 export type Toggle = {
   on: boolean;

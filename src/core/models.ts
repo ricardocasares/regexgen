@@ -8,9 +8,11 @@ export type LineRegexes = {
   patterns: Regex[];
 };
 
+export type FileRegexes = Record<string, LineRegexes>;
+
 export type State = {
   input: string;
-  regexes: Record<string, LineRegexes>;
+  regexes: FileRegexes;
 };
 
 /**

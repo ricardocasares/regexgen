@@ -1,4 +1,14 @@
-import { State, Action, ActionTypes as A } from "./models";
+import { State, FileRegexes, Action, ActionTypes as A } from "./models";
+import { escape } from "../lib/util";
+
+export function makeRegex(regexes: FileRegexes): string {
+  return Object.entries(regexes)
+    .map(([_, { text, patterns: regexes }]) =>
+      // apply all the patterns to the line
+      regexes.reduce((acc, [a, b]) => acc.replace(escape(a), b), escape(text))
+    )
+    .join(`[\\s\\S]*?`);
+}
 
 export function reducer(state: State, { type, payload }: Action): State {
   switch (type) {

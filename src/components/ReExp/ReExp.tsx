@@ -2,11 +2,10 @@ import { useState } from "react";
 import { Stack } from "../Stack";
 import css from "./reexp.module.css";
 import { wait } from "../../lib/util";
+import { useCore } from "../../core";
 
-export type TReExp = {
-  regex: string;
-};
-export const ReExp = ({ regex }: TReExp) => {
+export const ReExp = () => {
+  const { regex } = useCore();
   const [copied, setCopied] = useState(false);
   const help = "Your regex will appear here, then click to copy";
   const ready = Boolean(regex.length);
@@ -20,9 +19,7 @@ export const ReExp = ({ regex }: TReExp) => {
 
   return (
     <Stack f rs ps className={css.regex}>
-      <div onClick={onClick}>
-        {displayText}
-      </div>
+      <div onClick={onClick}>{displayText}</div>
     </Stack>
   );
 };

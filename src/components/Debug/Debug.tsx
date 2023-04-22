@@ -2,45 +2,38 @@ import clx from "clsx";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import css from "./debug.module.css";
 import { Stack } from "../Stack";
+import { useCore, reset } from "../../core";
 
-export type Debug = {
-  object: any;
-  onChange: (x: object) => void;
-};
-
-export const Debug = ({ object, onChange }: Debug) => {
+export const Debug = () => {
+  const { state, dispatch } = useCore();
+  const [text, setText] = useState("");
   const [error, setError] = useState(false);
-  const [input, setInput] = useState("");
-  const ref = useRef<HTMLTextAreaElement>(null)
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const stringifiedRegexes = JSON.stringify(state.regexes, null, 2);
 
   const handleEdits = ({
     target: { value },
   }: ChangeEvent<HTMLTextAreaElement>) => {
     try {
-      onChange(JSON.parse(value));
+      const regexes = JSON.parse(value);
+      dispatch(reset({ ...state, regexes }));
       setError(false);
     } catch (e) {
       setError(true);
     } finally {
-      setInput(value);
+      setText(value);
     }
   };
 
-  useEffect(() => {
-    setInput(JSON.stringify(object, null, 2));
-  }, [JSON.stringify(object)]);
+  useEffect(() => setText(stringifiedRegexes), [stringifiedRegexes]);
 
   useEffect(() => {
-    ref.current?.addEventListener("paste", e => e.stopPropagation());
-  }, [])
+    ref.current?.addEventListener("paste", (e) => e.stopPropagation());
+  }, []);
 
   return (
     <Stack f rs ps className={clx(css.debug, { [css.error]: error })}>
-      <textarea
-        ref={ref}
-        onChange={handleEdits}
-        value={input}
-      ></textarea>
+      <textarea ref={ref} onChange={handleEdits} value={text}></textarea>
     </Stack>
   );
 };
