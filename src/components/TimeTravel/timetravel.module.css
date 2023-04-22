@@ -1,11 +1,10 @@
 .timetravel button {
-  border: none;
-  padding: 10px 16px;
   color: hsl(252, 56%, 57.5%);
   background: hsl(253, 37%, 18.4%);
 }
 
-.timetravel button:hover {
+.timetravel button:hover,
+.timetravel button:focus {
   color: hsl(250, 95%, 76.8%);
   background: hsl(252, 40.1%, 22.5%);
 }
@@ -13,17 +12,14 @@
 .timetravel button:disabled {
   color: hsl(250, 46.8%, 38.9%);
   background: hsl(255, 30.3%, 12.9%);
-  cursor: not-allowed;
 }
 
 .undo {
-  border-radius: 4px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
 .redo {
-  border-radius: 4px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }

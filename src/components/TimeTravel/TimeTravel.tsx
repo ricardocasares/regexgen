@@ -1,4 +1,5 @@
 import { Stack } from "../Stack";
+import { Button } from "../Button";
 import { useTimeTravel } from "./hook";
 import css from "./timetravel.module.css";
 
@@ -7,12 +8,12 @@ export function TimeTravel() {
 
   return (
     <Stack stretch h className={css.timetravel}>
-      <button className={css.undo} disabled={canUndo} onClick={undo}>
+      <Button className={css.undo} disabled={canUndo} onClick={undo}>
         Undo
-      </button>
-      <button className={css.redo} disabled={canRedo} onClick={redo}>
+      </Button>
+      <Button className={css.redo} disabled={canRedo} onClick={redo}>
         Redo
-      </button>
+      </Button>
     </Stack>
   );
 }
