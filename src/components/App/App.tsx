@@ -17,9 +17,9 @@ export default function App() {
       <Stack vh ps sm>
         <Stack h sm className={css.sticky}>
           <ReExp />
-          <Stack h sm>
-            <TimeTravel />
+          <Stack h sm start>
             <Toggle on={debuggerOn} onClick={() => setDebugger(!debuggerOn)} />
+            <TimeTravel />
           </Stack>
         </Stack>
         <Stack f h sm>
