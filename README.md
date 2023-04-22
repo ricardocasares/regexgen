@@ -11,6 +11,7 @@
 - [x] Escaping regex and unescaping
 - [ ] This is too greedy and kills the browser `(\n(?:\s.*\n)*\s*)` (Preview is unstable)
 - [ ] Preview mode does not work exactly like regex 101
+- [ ] Need to validate debugger input to comply with state shape or the thing crashes
 
 ## Features
 

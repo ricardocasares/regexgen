@@ -7,6 +7,7 @@ import { Stack } from "../Stack";
 import { Debug } from "../Debug/Debug";
 import { Toggle } from "../Toggle";
 import { CoreProvider } from "../../core";
+import { TimeTravel } from "../TimeTravel";
 
 export default function App() {
   const [debuggerOn, setDebugger] = useState(false);
@@ -14,13 +15,14 @@ export default function App() {
   return (
     <CoreProvider>
       <Stack vh ps sm>
-        <Stack h sm start className={css.sticky}>
+        <Stack h sm className={css.sticky}>
           <ReExp />
-          <Stack>
+          <Stack h sm>
+            <TimeTravel />
             <Toggle on={debuggerOn} onClick={() => setDebugger(!debuggerOn)} />
           </Stack>
         </Stack>
-        <Stack f h sm stretch>
+        <Stack f h sm>
           <Workbench />
           <Preview />
           {debuggerOn && <Debug />}

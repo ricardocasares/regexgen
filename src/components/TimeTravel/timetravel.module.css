@@ -1,0 +1,29 @@
+.timetravel button {
+  border: none;
+  padding: 0 16px;
+  background: #444;
+  color: #ccc;
+}
+
+.timetravel button:hover {
+  background: #222;
+  color: #ccc;
+}
+
+.timetravel button:disabled {
+  color: #666;
+  background: #111;
+  cursor: not-allowed;
+}
+
+.undo {
+  border-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.redo {
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
