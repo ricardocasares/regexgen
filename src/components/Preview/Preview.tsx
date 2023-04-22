@@ -1,4 +1,5 @@
 import clx from "clsx";
+import { useMemo } from "react";
 import css from "./preview.module.css";
 import { Stack } from "../Stack";
 import { useCore } from "../../core";
@@ -10,10 +11,14 @@ export function Preview() {
   } = useCore();
 
   try {
-    const match = input.match(new RegExp(regex));
-    const result = match?.reduce(
-      (a, b) => a.replace(b, `<b class="${css.matched}">${b}</b>`),
-      input
+    const match = useMemo(() => input.match(new RegExp(regex)), [regex]);
+    const result = useMemo(
+      () =>
+        match?.reduce(
+          (a, b) => a.replace(b, `<b class="${css.matched}">${b}</b>`),
+          input
+        ),
+      [match, input]
     );
 
     if (!result) {

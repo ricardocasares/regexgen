@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { useCore, State, reset } from "../../core";
 
 type History<T> = {
@@ -26,24 +26,28 @@ export function useTimeTravel() {
 
   function undo() {
     const last = states.prev.pop() ?? states.current;
-    setStates({
-      current: last,
-      prev: [...states.prev],
-      next: [...states.next, states.current],
-    });
+    startTransition(() => {
+      setStates({
+        current: last,
+        prev: [...states.prev],
+        next: [...states.next, states.current],
+      });
 
-    dispatch(reset(last));
+      dispatch(reset(last));
+    });
   }
 
   function redo() {
     const next = states.next.pop() ?? states.current;
-    setStates({
-      current: next,
-      prev: [...states.prev, states.current],
-      next: [...states.next],
-    });
+    startTransition(() => {
+      setStates({
+        current: next,
+        prev: [...states.prev, states.current],
+        next: [...states.next],
+      });
 
-    dispatch(reset(next));
+      dispatch(reset(next));
+    });
   }
 
   return { states, undo, redo, canUndo, canRedo };

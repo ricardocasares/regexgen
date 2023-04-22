@@ -1,13 +1,16 @@
 import uniqolor from "uniqolor";
 import css from "./match.module.css";
-import type { ReactNode, HTMLAttributes } from "react";
+import { ReactNode, HTMLAttributes, useMemo } from "react";
 
 export type TMatch = {
   title: string;
   children: ReactNode;
 } & HTMLAttributes<HTMLSpanElement>;
 export const Match = (props: TMatch) => {
-  const { color: borderColor } = uniqolor(props.title);
+  const { color: borderColor } = useMemo(
+    () => uniqolor(props.title),
+    [props.title]
+  );
 
   return (
     <span

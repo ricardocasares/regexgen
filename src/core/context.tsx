@@ -41,12 +41,15 @@ export const CoreProvider = ({ children }: CoreProvider) => {
   const lines = useMemo(() => splitByLine(state.input), [state.input]);
   const regex = useMemo(() => makeRegex(state.regexes), [state.regexes]);
 
-  const value = {
-    lines,
-    regex,
-    state,
-    dispatch,
-  };
+  const value = useMemo(
+    () => ({
+      state,
+      lines,
+      regex,
+      dispatch,
+    }),
+    [state, lines, regex]
+  );
 
   useEffect(() => {
     const handler = (ev: ClipboardEvent) => {
