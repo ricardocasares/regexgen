@@ -9,23 +9,7 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.grayDark {
-  --gray1: hsl(0, 0%, 8.5%);
-  --gray2: hsl(0, 0%, 11%);
-  --gray3: hsl(0, 0%, 13.6%);
-  --gray4: hsl(0, 0%, 15.8%);
-  --gray5: hsl(0, 0%, 17.9%);
-  --gray6: hsl(0, 0%, 20.5%);
-  --gray7: hsl(0, 0%, 24.3%);
-  --gray8: hsl(0, 0%, 31.2%);
-  --gray9: hsl(0, 0%, 43.9%);
-  --gray10: hsl(0, 0%, 49.4%);
-  --gray11: hsl(0, 0%, 62.8%);
-  --gray12: hsl(0, 0%, 93%);
-}
-
-.button:hover,
-.button:focus {
+.button:hover {
   color: hsl(0, 0%, 49.4%);
   background: hsl(0, 0%, 13.6%);
 }
@@ -34,4 +18,52 @@
   cursor: not-allowed;
   color: hsl(0, 0%, 20.5%);
   background: hsl(0, 0%, 8.5%);
+}
+
+/* Primary */
+.button.primary {
+  color: hsl(252, 56%, 57.5%);
+  background: hsl(253, 37%, 18.4%);
+}
+
+.button.primary:hover {
+  color: hsl(250, 95%, 76.8%);
+  background: hsl(252, 40.1%, 22.5%);
+}
+
+.button.primary:disabled {
+  color: hsl(250, 46.8%, 38.9%);
+  background: hsl(255, 30.3%, 12.9%);
+}
+
+/* Secondary */
+.button.secondary {
+  color: hsl(252, 56%, 57.5%);
+  background: hsl(253, 37%, 18.4%);
+}
+
+.button.secondary:hover {
+  color: hsl(250, 95%, 76.8%);
+  background: hsl(252, 40.1%, 22.5%);
+}
+
+.button.secondary:disabled {
+  color: hsl(250, 46.8%, 38.9%);
+  background: hsl(255, 30.3%, 12.9%);
+}
+
+/* Success */
+.button.success {
+  color: hsl(151, 51.7%, 28.4%);
+  background: hsl(155, 46.7%, 10.9%);
+}
+
+.button.success:hover {
+  color: hsl(131, 43%, 57.2%);
+  background: hsl(136, 38.7%, 16%);
+}
+
+.button.success:disabled {
+  color: hsl(131, 43%, 57.2%);
+  background: hsl(136, 38.7%, 16%);
 }

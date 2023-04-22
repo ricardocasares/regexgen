@@ -4,12 +4,32 @@ import css from "./button.module.css";
 
 export type Button = {
   disabled?: boolean;
+  primary?: boolean;
+  secondary?: boolean;
+  success?: boolean;
   children: ReactNode;
 } & HTMLAttributes<HTMLButtonElement>;
 
-export function Button({ className, ...props }: Button) {
+export function Button({
+  className,
+  primary,
+  secondary,
+  success,
+  ...props
+}: Button) {
   return (
-    <button {...props} className={clx(css.button, className)}>
+    <button
+      {...props}
+      className={clx(
+        css.button,
+        {
+          [css.primary]: primary,
+          [css.secondary]: secondary,
+          [css.success]: success,
+        },
+        className
+      )}
+    >
       {props.children}
     </button>
   );
