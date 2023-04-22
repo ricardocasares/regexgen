@@ -27,11 +27,13 @@
     "uniqolor": "1.1.0"
   },
   "devDependencies": {
-    "@types/node": "^18.15.12",
+    "@types/node": "^18.15.13",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^1.3.2",
+    "@vitest/coverage-c8": "^0.30.1",
     "typescript": "^5.0.4",
-    "vite": "^4.3.0"
+    "vite": "^4.3.0",
+    "vitest": "^0.30.1"
   }
 }
