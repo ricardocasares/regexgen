@@ -9,7 +9,10 @@ export function reducer(state: State, { type, payload }: Action): State {
       return { ...state, input: payload };
     }
     case A.ADD_LINE: {
-      return { ...state, regexes: { ...state.regexes, [payload[0]]: payload[1] } };
+      return {
+        ...state,
+        regexes: { ...state.regexes, [payload[0]]: payload[1] },
+      };
     }
     case A.REMOVE_LINE: {
       const {
@@ -34,7 +37,9 @@ export function reducer(state: State, { type, payload }: Action): State {
     }
     case A.TOGGLE_LINE: {
       const [n, line] = payload;
-      const { regexes: { [n]: exists, ...rest } } = state;
+      const {
+        regexes: { [n]: exists, ...rest },
+      } = state;
       const regexes = exists ? rest : { ...rest, [n]: line };
       return { ...state, regexes };
     }

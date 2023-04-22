@@ -62,7 +62,7 @@ export type ToggleRegEx = {
   payload: [number, Regex];
 };
 
-export type ResetState = { type: ActionTypes.RESET; payload: State; };
+export type ResetState = { type: ActionTypes.RESET; payload: State };
 // all possible state actions
 export type Action =
   | SetInput
