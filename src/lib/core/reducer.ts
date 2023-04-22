@@ -6,7 +6,7 @@ export function reducer(state: State, { type, payload }: Action): State {
       return payload;
     }
     case A.INPUT: {
-      return { ...state, input: payload };
+      return { input: payload, regexes: {} };
     }
     case A.ADD_LINE: {
       return {
