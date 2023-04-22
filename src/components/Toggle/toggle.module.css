@@ -1,8 +1,8 @@
 .toggle {
   border: none;
   padding: 10px 16px;
-  background: #333;
-  color: #ccc;
+  color: hsl(151, 51.7%, 28.4%);
+  background: hsl(155, 46.7%, 10.9%);
   border-radius: 4px;
 }
 

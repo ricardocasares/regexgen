@@ -15,7 +15,7 @@ export function Preview() {
     const result = useMemo(
       () =>
         match?.reduce(
-          (a, b) => a.replace(b, `<b class="${css.matched}">${b}</b>`),
+          (a, b) => a.replace(b, `<span class="${css.matched}">${b}</span>`),
           input
         ),
       [match, input]
