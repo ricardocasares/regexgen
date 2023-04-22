@@ -59,8 +59,8 @@
 }
 
 .button.success:hover {
-  color: hsl(131, 43%, 57.2%);
-  background: hsl(136, 38.7%, 16%);
+  color: hsl(151, 55%, 41.5%);
+  background: hsl(154, 50.9%, 17.6%);
 }
 
 .button.success:disabled {

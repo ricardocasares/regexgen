@@ -1,6 +1,7 @@
 import clx from "clsx";
 import { HTMLAttributes } from "react";
 import css from "./toggle.module.css";
+import { Button } from "../Button";
 
 export type Toggle = {
   on: boolean;
@@ -8,8 +9,8 @@ export type Toggle = {
 
 export function Toggle({ on, ...props }: Toggle) {
   return (
-    <button {...props} className={clx(css.toggle, { [css.on]: on })}>
+    <Button {...props} success className={clx({ [css.on]: on })}>
       Editor
-    </button>
+    </Button>
   );
 }

@@ -1,13 +1,4 @@
-.toggle {
-  border: none;
-  padding: 10px 16px;
-  color: hsl(151, 51.7%, 28.4%);
-  background: hsl(155, 46.7%, 10.9%);
-  border-radius: 4px;
-}
-
-.toggle.on,
-.toggle:hover {
-  color: hsl(131, 43%, 57.2%);
-  background: hsl(136, 38.7%, 16%);
+.on {
+  color: hsl(151, 49.3%, 46.5%) !important;
+  background: hsl(153, 51.8%, 21.8%) !important;
 }
