@@ -1,12 +1,12 @@
 /* <Debug /> */
-.debug {
+.debug,
+.debug textarea {
+  color: #fff;
   background: #111;
 }
 
 .debug textarea {
   border: none;
-  color: #fff;
-  background: inherit !important;
   height: 100%;
 }
 
@@ -14,7 +14,9 @@
   outline: none;
 }
 
-.debug.error {
-  background: hsl(357, 60.2%, 31.8%);
+.debug.error,
+.debug.error textarea {
+  color: hsl(358, 75%, 59%);
+  background: hsl(357, 34.4%, 12%);
   border-radius: 6px;
 }
