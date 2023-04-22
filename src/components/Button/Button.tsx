@@ -20,15 +20,11 @@ export function Button({
   return (
     <button
       {...props}
-      className={clx(
-        css.button,
-        {
-          [css.primary]: primary,
-          [css.secondary]: secondary,
-          [css.success]: success,
-        },
-        className
-      )}
+      className={clx(className, css.button, {
+        [css.primary]: primary,
+        [css.secondary]: secondary,
+        [css.success]: success,
+      })}
     >
       {props.children}
     </button>
