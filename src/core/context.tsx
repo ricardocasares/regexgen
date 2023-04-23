@@ -10,7 +10,7 @@ import {
 import { Action, State } from "./models";
 import { reducer, makeRegex } from "./reducer";
 import { splitByLine } from "../lib/util";
-import { help, example } from "../lib/help";
+import { example } from "../lib/help";
 import { reset } from "./actions";
 
 const initial: State = {

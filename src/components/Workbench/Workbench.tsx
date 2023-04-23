@@ -1,4 +1,3 @@
-import { MouseEvent } from "react";
 import css from "./workbench.module.css";
 import { Stack } from "../Stack";
 import { Line } from "../Line";
