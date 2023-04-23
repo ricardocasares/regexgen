@@ -1,14 +1,14 @@
 import { useState } from "react";
 import css from "./app.module.css";
 import { Preview } from "../Preview";
-import { Workbench } from "../Workbench/Workbench";
+import { Workbench } from "../Workbench";
 import { ReExp } from "../ReExp";
 import { Stack } from "../Stack";
-import { Debug } from "../Debug/Debug";
+import { Debug } from "../Debug";
 import { Toggle } from "../Toggle";
-import { CoreProvider } from "../../core";
-import { TimeTravel } from "../TimeTravel";
 import { Settings } from "../Settings";
+import { TimeTravel } from "../TimeTravel";
+import { CoreProvider } from "../../core";
 
 export default function App() {
   const [previewOn, showPreview] = useState(true);
