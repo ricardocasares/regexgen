@@ -11,6 +11,7 @@ import { TimeTravel } from "../TimeTravel";
 import { Settings } from "../Settings";
 
 export default function App() {
+  const [previewOn, showPreview] = useState(true);
   const [debuggerOn, showDebugger] = useState(false);
   const [settingsOn, showSettings] = useState(false);
 
@@ -21,8 +22,12 @@ export default function App() {
           <ReExp />
           <Stack h sm start>
             <TimeTravel />
-            <Toggle on={settingsOn} onClick={() => showSettings(!settingsOn)}>
-              Settings
+            <Toggle
+              on={previewOn}
+              secondary
+              onClick={() => showPreview(!previewOn)}
+            >
+              Preview
             </Toggle>
             <Toggle
               on={debuggerOn}
@@ -31,12 +36,15 @@ export default function App() {
             >
               Editor
             </Toggle>
+            <Toggle on={settingsOn} onClick={() => showSettings(!settingsOn)}>
+              Settings
+            </Toggle>
           </Stack>
         </Stack>
         {settingsOn && <Settings />}
         <Stack f h sm>
           <Workbench />
-          <Preview />
+          {previewOn && <Preview />}
           {debuggerOn && <Debug />}
         </Stack>
       </Stack>
