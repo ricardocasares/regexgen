@@ -9,10 +9,10 @@ export function TimeTravel() {
   return (
     <Stack stretch h className={css.timetravel}>
       <Button secondary className={css.undo} disabled={canUndo} onClick={undo}>
-        Undo
+        ↺
       </Button>
       <Button secondary className={css.redo} disabled={canRedo} onClick={redo}>
-        Redo
+        ↻
       </Button>
     </Stack>
   );
