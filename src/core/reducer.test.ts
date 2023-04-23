@@ -1,7 +1,7 @@
 import { it, expect } from "vitest";
 import * as A from "./actions";
 import { State, LineRegexes, Regex } from "./models";
-import { reducer } from "./reducer";
+import { reducer, makeRegex } from "./reducer";
 
 const init: State = {
   input: "",
@@ -9,7 +9,7 @@ const init: State = {
 };
 
 const with2lines: State = {
-  input: "hello world",
+  input: "hello\nworld",
   regexes: {
     0: {
       text: "hello",
@@ -95,4 +95,15 @@ it("toggles a line", () => {
   expect(Object.entries(a.regexes[0].patterns).length).toBe(0);
   const b = reducer(a, A.toggleRegex([0, regex]));
   expect(Object.entries(b.regexes[0].patterns).length).toBe(1);
+});
+
+it("makes a regex", () => {
+  const regex = makeRegex(with2lines.regexes);
+  expect(regex).toBe(`(hello)[\\s\\S]*?(world)`);
+});
+
+it("regex has proper matches", () => {
+  const regex = makeRegex(with2lines.regexes);
+  const matches = with2lines.input.match(new RegExp(regex));
+  expect(matches).containSubset(["hello", "world"]);
 });
