@@ -18,7 +18,7 @@ export default function App() {
   return (
     <CoreProvider>
       <Stack vh ps gap="sm">
-        <Stack h className={css.sticky}>
+        <Stack h className={css.sticky} gap="sm">
           <ReExp />
           <Stack h gap="sm" start>
             <TimeTravel />
