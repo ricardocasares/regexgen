@@ -1,4 +1,3 @@
 .on {
-  color: hsl(151, 49.3%, 46.5%) !important;
-  background: hsl(153, 51.8%, 21.8%) !important;
+  border: 1px solid currentColor !important;
 }

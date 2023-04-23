@@ -8,9 +8,11 @@ import { Debug } from "../Debug/Debug";
 import { Toggle } from "../Toggle";
 import { CoreProvider } from "../../core";
 import { TimeTravel } from "../TimeTravel";
+import { Settings } from "../Settings";
 
 export default function App() {
-  const [debuggerOn, setDebugger] = useState(false);
+  const [debuggerOn, showDebugger] = useState(false);
+  const [settingsOn, showSettings] = useState(false);
 
   return (
     <CoreProvider>
@@ -19,9 +21,19 @@ export default function App() {
           <ReExp />
           <Stack h sm start>
             <TimeTravel />
-            <Toggle on={debuggerOn} onClick={() => setDebugger(!debuggerOn)} />
+            <Toggle on={settingsOn} onClick={() => showSettings(!settingsOn)}>
+              Settings
+            </Toggle>
+            <Toggle
+              on={debuggerOn}
+              success
+              onClick={() => showDebugger(!debuggerOn)}
+            >
+              Editor
+            </Toggle>
           </Stack>
         </Stack>
+        {settingsOn && <Settings />}
         <Stack f h sm>
           <Workbench />
           <Preview />
