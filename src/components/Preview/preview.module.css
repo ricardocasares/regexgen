@@ -7,14 +7,12 @@
 
 .preview .matched {
   color: hsl(250, 95%, 76.8%);
-  background: hsl(252, 40.1%, 22.5%);
 }
 
 .preview .matched > .matched {
   font-weight: bold;
   color: hsl(252, 40.1%, 22.5%);
   background: hsl(250, 95%, 76.8%);
-  display: inline-block;
 }
 
 .preview.error {
