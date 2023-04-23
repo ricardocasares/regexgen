@@ -14,7 +14,7 @@ export const ReExp = () => {
   const onClick = () =>
     Promise.resolve(setCopied(true))
       .then(() => navigator.clipboard.writeText(regex).catch(console.log))
-      .then(() => wait(900))
+      .then(() => wait(2000))
       .then(() => setCopied(false));
 
   return (
