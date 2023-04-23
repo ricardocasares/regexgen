@@ -3,6 +3,7 @@ import { Stack } from "../Stack";
 import css from "./reexp.module.css";
 import { wait } from "../../lib/util";
 import { useCore } from "../../core";
+import { Button } from "../Button";
 
 export const ReExp = () => {
   const { regex } = useCore();
@@ -18,8 +19,13 @@ export const ReExp = () => {
       .then(() => setCopied(false));
 
   return (
-    <Stack f rs ps className={css.regex}>
-      <div onClick={onClick}>{displayText}</div>
-    </Stack>
+    <Button
+      disabled={!Boolean(regex.length)}
+      className={css.regex}
+      secondary
+      onClick={onClick}
+    >
+      {displayText}
+    </Button>
   );
 };

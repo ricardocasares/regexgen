@@ -1,11 +1,5 @@
 .regex {
+  flex: 1;
   cursor: pointer;
-  color: hsl(252, 56%, 57.5%);
-  background: hsl(253, 37%, 18.4%);
-  font-family: monospace;
-}
-
-.regex:hover {
-  color: hsl(250, 95%, 76.8%);
-  background: hsl(252, 40.1%, 22.5%);
+  font-family: monospace !important;
 }
