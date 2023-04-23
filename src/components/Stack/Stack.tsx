@@ -3,27 +3,31 @@ import css from "./stack.module.css";
 import { HTMLAttributes, ReactNode } from "react";
 
 export type Stack = {
-    f?: boolean;
-    p?: boolean;
-    v?: boolean;
-    h?: boolean;
-    s?: boolean;
-    sm?: boolean;
-    md?: boolean;
-    lg?: boolean;
-    ps?: boolean;
-    pm?: boolean;
-    pl?: boolean;
-    rs?: boolean;
-    vh?: boolean;
-    start?: boolean;
-    stretch?: boolean;
-    className?: string;
-    children?: ReactNode;
-} & HTMLAttributes<HTMLDivElement>
+  f?: boolean;
+  p?: boolean;
+  v?: boolean;
+  h?: boolean;
+  s?: boolean;
+  sm?: boolean;
+  md?: boolean;
+  lg?: boolean;
+  ps?: boolean;
+  pm?: boolean;
+  pl?: boolean;
+  rs?: boolean;
+  vh?: boolean;
+  end?: boolean;
+  start?: boolean;
+  center?: boolean;
+  stretch?: boolean;
+  className?: string;
+  children?: ReactNode;
+} & HTMLAttributes<HTMLDivElement>;
 
 export function Stack({ children, className = "", ...props }: Stack) {
-    return <div className={clx([css.stack, className], {
+  return (
+    <div
+      className={clx([css.stack, className], {
         [css.f]: props.f,
         [css.v]: props.v,
         [css.h]: props.h,
@@ -35,7 +39,13 @@ export function Stack({ children, className = "", ...props }: Stack) {
         [css.pl]: props.pl,
         [css.rs]: props.rs,
         [css.vh]: props.vh,
+        [css.end]: props.end,
         [css.start]: props.start,
+        [css.center]: props.center,
         [css.stretch]: props.stretch,
-    })}>{children}</div>
+      })}
+    >
+      {children}
+    </div>
+  );
 }

@@ -13,12 +13,20 @@
   flex-direction: row;
 }
 
-.stack.stretch {
-  align-items: stretch;
+.stack.end {
+  align-items: end;
 }
 
 .stack.start {
   align-items: start;
+}
+
+.stack.center {
+  align-items: center;
+}
+
+.stack.stretch {
+  align-items: stretch;
 }
 
 .stack.sm {
