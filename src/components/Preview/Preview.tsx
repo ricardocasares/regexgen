@@ -1,5 +1,6 @@
 import clx from "clsx";
 import css from "./preview.module.css";
+import { Text } from "../Text";
 import { Stack } from "../Stack";
 import { useCore } from "../../core";
 
@@ -37,9 +38,9 @@ export function Preview() {
     );
   } catch (err: any) {
     return (
-      <Stack f rs ps className={clx([css.preview, css.error])}>
-        <h3>That's not gonna fly!</h3>
-        <p>{(err && err?.message) || "Something went wrong"}</p>
+      <Stack f rs sm ps className={clx([css.preview, css.error])}>
+        <Text as="h3">That's not gonna fly!</Text>
+        <Text>{(err && err?.message) || "Something went wrong"}</Text>
       </Stack>
     );
   }
