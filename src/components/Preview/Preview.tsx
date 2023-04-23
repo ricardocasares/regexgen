@@ -38,7 +38,7 @@ export function Preview() {
     );
   } catch (err: any) {
     return (
-      <Stack f rs sm ps className={clx([css.preview, css.error])}>
+      <Stack f rs gap="sm" ps className={clx([css.preview, css.error])}>
         <Text as="h3">That's not gonna fly!</Text>
         <Text>{(err && err?.message) || "Something went wrong"}</Text>
       </Stack>

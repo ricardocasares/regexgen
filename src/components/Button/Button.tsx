@@ -1,5 +1,6 @@
 import clx from "clsx";
 import { HTMLAttributes, ReactNode } from "react";
+import { Stack } from "../Stack";
 import css from "./button.module.css";
 
 export type Button = {
@@ -9,7 +10,8 @@ export type Button = {
   success?: boolean;
   danger?: boolean;
   children: ReactNode;
-} & HTMLAttributes<HTMLButtonElement>;
+} & Stack<"button"> &
+  HTMLAttributes<HTMLButtonElement>;
 
 export function Button({
   className,
@@ -20,7 +22,8 @@ export function Button({
   ...props
 }: Button) {
   return (
-    <button
+    <Stack
+      as="button"
       {...props}
       className={clx(className, css.button, {
         [css.primary]: primary,
@@ -30,6 +33,6 @@ export function Button({
       })}
     >
       {props.children}
-    </button>
+    </Stack>
   );
 }

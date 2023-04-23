@@ -17,10 +17,10 @@ export default function App() {
 
   return (
     <CoreProvider>
-      <Stack vh ps sm>
-        <Stack h sm className={css.sticky}>
+      <Stack vh ps gap="sm">
+        <Stack h className={css.sticky}>
           <ReExp />
-          <Stack h sm start>
+          <Stack h gap="sm" start>
             <TimeTravel />
             <Toggle
               on={previewOn}
@@ -42,7 +42,7 @@ export default function App() {
           </Stack>
         </Stack>
         {settingsOn && <Settings />}
-        <Stack f h sm>
+        <Stack f h gap="sm">
           <Workbench />
           {previewOn && <Preview />}
           {debuggerOn && <Debug />}

@@ -7,13 +7,13 @@ import css from "./settings.module.css";
 
 export function Settings() {
   return (
-    <Stack rs ps lg className={css.settings}>
-      <Stack h center>
-        <Stack f sm>
+    <Stack rs ps className={css.settings} gap="lg">
+      <Stack h center gap="sm">
+        <Stack f gap="sm">
           <Text as="h3">Flags</Text>
           <Text>Controls the final regex flags</Text>
         </Stack>
-        <Stack h sm>
+        <Stack h gap="sm">
           <Button>Global</Button>
           <Button>Multi line</Button>
           <Button>Single line</Button>
@@ -22,20 +22,17 @@ export function Settings() {
           <Button>Ungreedy</Button>
         </Stack>
       </Stack>
-
+      <Divider />
       <Stack>
-        <Stack h lg start>
-          <Stack sm start>
+        <Stack h gap="lg" start>
+          <Stack gap="sm" start>
             <Text as="h3">Custom patterns</Text>
-            <Stack lg start>
-              <Text>
-                You can add your own color blocks with custom matchers
-              </Text>
-              <Button>Add new custom pattern</Button>
+            <Stack gap="lg" start>
+              <Text>You can add your own color custom matchers</Text>
             </Stack>
           </Stack>
-          <Stack sm f>
-            <Stack h sm>
+          <Stack f gap="md">
+            <Stack h gap="sm">
               <Button style={{ flex: 1 }}>IP Address</Button>
               <Button style={{ flex: 1 }}>
                 ((?:[a-fA-F\d]{4}\.){2}[a-fA-F\d]{4})
@@ -47,7 +44,7 @@ export function Settings() {
               <Button danger>✕</Button>
             </Stack>
             <Divider />
-            <Stack h sm>
+            <Stack h gap="sm">
               <Button style={{ flex: 1 }}>Hex Number</Button>
               <Button style={{ flex: 1 }}>
                 ((?:[a-fA-F\d]{4}\.){2}[a-fA-F\d]{4})
@@ -59,7 +56,7 @@ export function Settings() {
               <Button danger>✕</Button>
             </Stack>
             <Divider />
-            <Stack h sm>
+            <Stack h gap="sm">
               <Button style={{ flex: 1 }}>Mac address</Button>
               <Button style={{ flex: 1 }}>
                 ((?:[a-fA-F\d]{4}\.){2}[a-fA-F\d]{4})
@@ -69,6 +66,10 @@ export function Settings() {
               <Toggle on={false}>u</Toggle>
               <Toggle on={false}>i</Toggle>
               <Button danger>✕</Button>
+            </Stack>
+            <Divider />
+            <Stack end>
+              <Button>Add new custom pattern</Button>
             </Stack>
           </Stack>
         </Stack>
