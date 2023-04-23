@@ -1,5 +1,4 @@
 import clx from "clsx";
-import { useMemo } from "react";
 import css from "./preview.module.css";
 import { Stack } from "../Stack";
 import { useCore } from "../../core";
@@ -11,27 +10,29 @@ export function Preview() {
   } = useCore();
 
   try {
-    const match = input.match(new RegExp(regex));
-    const result = useMemo(
-      () =>
-        match?.reduce(
-          (a, b) => a.replace(b, `<span class="${css.matched}">${b}</span>`),
-          input
-        ),
-      [match, input]
-    );
+    const matches = input.match(new RegExp(regex));
 
-    if (!result) {
+    if (matches) {
+      const [first, ...captures] = matches;
+      const inner = captures.reduce(
+        (a, b) => a.replace(b, `<span class="${css.matched}">${b}</span>`),
+        first
+      );
+      const outer = input.replace(
+        first,
+        `<span class="${css.matched}">${inner}</span>`
+      );
+
       return (
         <Stack f rs ps className={css.preview}>
-          No matches
+          <div dangerouslySetInnerHTML={{ __html: outer }} />
         </Stack>
       );
     }
 
     return (
       <Stack f rs ps className={css.preview}>
-        <div dangerouslySetInnerHTML={{ __html: result }} />
+        No matches
       </Stack>
     );
   } catch (err: any) {
