@@ -7,6 +7,7 @@ export type Button = {
   primary?: boolean;
   secondary?: boolean;
   success?: boolean;
+  danger?: boolean;
   children: ReactNode;
 } & HTMLAttributes<HTMLButtonElement>;
 
@@ -15,6 +16,7 @@ export function Button({
   primary,
   secondary,
   success,
+  danger,
   ...props
 }: Button) {
   return (
@@ -24,6 +26,7 @@ export function Button({
         [css.primary]: primary,
         [css.secondary]: secondary,
         [css.success]: success,
+        [css.danger]: danger,
       })}
     >
       {props.children}

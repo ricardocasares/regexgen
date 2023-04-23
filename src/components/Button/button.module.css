@@ -68,3 +68,34 @@
   color: hsl(131, 43%, 57.2%);
   background: hsl(136, 38.7%, 16%);
 }
+
+/* Success */
+.button.danger {
+  color: hsl(358, 65%, 40.4%);
+  background: hsl(356, 43.4%, 16.4%);
+}
+
+.redDark {
+  --red1: hsl(353, 23%, 9.8%);
+  --red2: hsl(357, 34.4%, 12%);
+  --red3: hsl(356, 43.4%, 16.4%);
+  --red4: hsl(356, 47.6%, 19.2%);
+  --red5: hsl(356, 51.1%, 21.9%);
+  --red6: hsl(356, 55.2%, 25.9%);
+  --red7: hsl(357, 60.2%, 31.8%);
+  --red8: hsl(358, 65%, 40.4%);
+  --red9: hsl(358, 75%, 59%);
+  --red10: hsl(358, 85.3%, 64%);
+  --red11: hsl(358, 100%, 69.5%);
+  --red12: hsl(351, 89%, 96%);
+}
+
+.button.danger:hover {
+  color: hsl(358, 75%, 59%);
+  background: hsl(356, 47.6%, 19.2%);
+}
+
+.button.danger:disabled {
+  color: hsl(131, 43%, 57.2%);
+  background: hsl(136, 38.7%, 16%);
+}

@@ -34,11 +34,11 @@
 }
 
 .stack.md {
-  gap: 16rem;
+  gap: 16px;
 }
 
 .stack.lg {
-  gap: 24rem;
+  gap: 24px;
 }
 
 .stack.ps {
