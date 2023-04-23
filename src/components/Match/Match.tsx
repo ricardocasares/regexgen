@@ -14,6 +14,7 @@ export const Match = (props: TMatch) => {
 
   return (
     <span
+      tabIndex={0}
       className={css.match}
       data-matcher={true}
       style={{ borderColor }}
