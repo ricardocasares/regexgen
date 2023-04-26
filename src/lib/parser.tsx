@@ -3,10 +3,12 @@ import { Match } from "../components/Match";
 
 export const parser = reactStringReplace({
   interface: {
-    pattern: /((?:\S*Ethernet|\S*GigE|Loopback|Tunnel|Serial|Port-channel)\d+(?:\/\d+)*(?:\.\d+)*)/g,
+    pattern:
+      /((?:\S*Ethernet|\S*GigE|Loopback|Tunnel|Serial|Port-channel)\d+(?:\/\d+)*(?:\.\d+)*)/g,
     ignore: ["float", "word", "ratio"],
     matcherFn: (raw, processed, key) => (
       <Match
+        id={key}
         key={key}
         title="Interface"
         data-text={raw}
@@ -20,6 +22,7 @@ export const parser = reactStringReplace({
     pattern: /((?:\d+\/)+\d+)/g,
     matcherFn: (raw, processed, key) => (
       <Match
+        id={key}
         title="Ratio"
         key={key}
         data-text={raw}
@@ -34,6 +37,7 @@ export const parser = reactStringReplace({
     ignore: ["float", "integer", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
+        id={key}
         key={key}
         title="MAC address (1)"
         data-text={raw}
@@ -48,6 +52,7 @@ export const parser = reactStringReplace({
     ignore: ["float", "integer", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
+        id={key}
         key={key}
         title="MAC address (2)"
         data-text={raw}
@@ -62,6 +67,7 @@ export const parser = reactStringReplace({
     ignore: ["float", "integer", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
+        id={key}
         title="IP Address"
         key={key}
         data-text={raw}
@@ -76,6 +82,7 @@ export const parser = reactStringReplace({
     ignore: ["integer", "word"],
     matcherFn: (raw, processed, key) => (
       <Match
+        id={key}
         title="Time"
         key={key}
         data-text={raw}
@@ -90,6 +97,7 @@ export const parser = reactStringReplace({
     ignore: ["integer"],
     matcherFn: (raw, processed, key) => (
       <Match
+        id={key}
         title="Float"
         key={key}
         data-text={raw}
@@ -103,7 +111,13 @@ export const parser = reactStringReplace({
     pattern: /(\d)/g,
     ignore: ["word"],
     matcherFn: (raw, processed, key) => (
-      <Match title="Integer" key={key} data-text={raw} data-pattern="(\d)">
+      <Match
+        id={key}
+        title="Integer"
+        key={key}
+        data-text={raw}
+        data-pattern="(\d)"
+      >
         {processed}
       </Match>
     ),
@@ -113,6 +127,7 @@ export const parser = reactStringReplace({
     ignore: ["word"],
     matcherFn: (raw, processed, key) => (
       <Match
+        id={key}
         title="Hashtag"
         key={key}
         data-text={raw}
@@ -127,6 +142,7 @@ export const parser = reactStringReplace({
     ignore: ["word"],
     matcherFn: (raw, processed, key) => (
       <Match
+        id={key}
         title="Emoji"
         key={key}
         data-text={raw}
@@ -140,6 +156,7 @@ export const parser = reactStringReplace({
     pattern: /(INFO|TRACE|WARNING|WARN|DEBUG|FATAL|ERROR)/,
     matcherFn: (raw, processed, key) => (
       <Match
+        id={key}
         title="Log levels"
         key={key}
         data-text={raw}
@@ -152,7 +169,13 @@ export const parser = reactStringReplace({
   word: {
     pattern: /(\b[^\s]+\b)/,
     matcherFn: (raw, processed, key) => (
-      <Match title="Word" key={key} data-text={raw} data-pattern="(\b[^\s]+\b)">
+      <Match
+        id={key}
+        title="Word"
+        key={key}
+        data-text={raw}
+        data-pattern="(\b[^\s]+\b)"
+      >
         {processed}
       </Match>
     ),

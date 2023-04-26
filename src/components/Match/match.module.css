@@ -4,3 +4,7 @@
   cursor: pointer;
   padding-bottom: 2px;
 }
+
+.match.selected {
+  background: var(--bg-color);
+}
