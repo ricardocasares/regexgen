@@ -25,9 +25,10 @@ export const Match = (props: TMatch) => {
     if ("key" in ev) {
       if (ev.key !== "Enter") return;
     }
-
+    // @ts-expect-error
     const id = ev.target.getAttribute("id");
     if (id === props.id) {
+      // @ts-expect-error
       ev.target.classList.toggle(css.selected);
     }
   };
@@ -37,6 +38,7 @@ export const Match = (props: TMatch) => {
       tabIndex={0}
       className={css.match}
       data-matcher={true}
+      // @ts-expect-error
       style={{ borderColor, "--bg-color": borderColor }}
       onClick={eventHandler}
       onKeyDown={eventHandler}
