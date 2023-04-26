@@ -23,13 +23,14 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@preact/signals": "^1.1.3",
     "clsx": "1.2.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "preact": "^10.13.2",
     "react-string-replace-recursively": "0.2.0",
     "uniqolor": "1.1.0"
   },
   "devDependencies": {
+    "@preact/preset-vite": "^2.5.0",
     "@types/node": "^18.15.13",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
