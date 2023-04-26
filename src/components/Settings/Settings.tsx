@@ -28,7 +28,11 @@ export function Settings() {
           <Stack gap="sm" start>
             <Text as="h3">Custom patterns</Text>
             <Stack gap="lg" start>
-              <Text>You can add your own color custom matchers</Text>
+              <Text>Create and share your own patterns</Text>
+              <Stack h gap="md">
+                <Button>Share ⇡</Button>
+                <Button>Import ⇣</Button>
+              </Stack>
             </Stack>
           </Stack>
           <Stack f gap="md">
