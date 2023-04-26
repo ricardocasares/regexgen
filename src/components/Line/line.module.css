@@ -6,9 +6,7 @@
 }
 
 .line:hover,
-.line:focus,
-.line.selected:hover,
-.line.selected:focus {
+.line.selected:hover {
   background: #222;
 }
 
