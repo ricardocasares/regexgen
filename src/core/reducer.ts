@@ -7,7 +7,7 @@ export function makeRegex(regexes: FileRegexes): string {
       // apply all the patterns to the line
       regexes.reduce((acc, [a, b]) => acc.replace(escape(a), b), escape(text))
     )
-    .join(`[\\s\\S]*?`);
+    .join(`(\\n(?:\\s.*\\n)*\\s*)`);
 }
 
 export function reducer(state: State, { type, payload }: Action): State {

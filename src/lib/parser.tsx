@@ -68,7 +68,7 @@ export const parser = reactStringReplace({
     matcherFn: (raw, processed, key) => (
       <Match
         id={key}
-        title="IP Address"
+        title="IPv4 Address"
         key={key}
         data-text={raw}
         data-pattern="(\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b)"
@@ -92,6 +92,21 @@ export const parser = reactStringReplace({
       </Match>
     ),
   },
+  hexadecimal: {
+    pattern: /(0[xX][0-9a-fA-F]+)/g,
+    ignore: ["word"],
+    matcherFn: (raw, processed, key) => (
+      <Match
+        id={key}
+        title="Hexadecimal"
+        key={key}
+        data-text={raw}
+        data-pattern="(0[xX][0-9a-fA-F]+)"
+      >
+        {processed}
+      </Match>
+    ),
+  },
   float: {
     pattern: /(\d{1,4}\.\d{1,4})/g,
     ignore: ["integer"],
@@ -108,7 +123,7 @@ export const parser = reactStringReplace({
     ),
   },
   integer: {
-    pattern: /(\d)/g,
+    pattern: /(\d+)/g,
     ignore: ["word"],
     matcherFn: (raw, processed, key) => (
       <Match
@@ -116,12 +131,13 @@ export const parser = reactStringReplace({
         title="Integer"
         key={key}
         data-text={raw}
-        data-pattern="(\d)"
+        data-pattern="(\d+)"
       >
         {processed}
       </Match>
     ),
   },
+
   hashtag: {
     pattern: /(#[a-z\d][\w-]*)/i,
     ignore: ["word"],
@@ -166,6 +182,7 @@ export const parser = reactStringReplace({
       </Match>
     ),
   },
+
   word: {
     pattern: /(\b[^\s]+\b)/,
     matcherFn: (raw, processed, key) => (
@@ -175,6 +192,20 @@ export const parser = reactStringReplace({
         key={key}
         data-text={raw}
         data-pattern="(\b[^\s]+\b)"
+      >
+        {processed}
+      </Match>
+    ),
+  },
+  exact_word: {
+    pattern: /([a-zA-Z0-9\\_\-\.]+)/,
+    matcherFn: (raw, processed, key) => (
+      <Match
+        id={key}
+        title={"Exact Match (" + raw + ")"}
+        key={key}
+        data-text={raw}
+        data-pattern={"(" + raw + ")"}
       >
         {processed}
       </Match>
